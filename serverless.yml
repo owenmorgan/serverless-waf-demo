@@ -16,6 +16,8 @@ custom:
   s3Sync:
     - bucketName: ${self:custom.app-bucket}
       localDir: src/site/
+  associateWaf: # API Gateway Regional WAF
+      name: regional-${self:custom.stage}
 
 plugins:
   - serverless-associate-waf
@@ -66,7 +68,7 @@ resources:
         Type: AWS::CloudFront::Distribution
         Properties:
             DistributionConfig:
-                # WebACLId: Ref AppS3Bucket
+                WebACLId: !Ref AppACLGlobal
                 Origins:
                     - DomainName: ${self:custom.app-bucket}.s3.amazonaws.com
                       Id: S3-${self:custom.app-domain}
