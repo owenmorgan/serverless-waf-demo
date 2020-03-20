@@ -35,7 +35,7 @@ resources:
         Type: AWS::S3::Bucket
         Properties:
             AccessControl: PublicRead
-            BucketName: "${custom.app-bucket"
+            BucketName: "${custom.app-bucket}"
             WebsiteConfiguration:
                 IndexDocument: index.html
       
